@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "bsp/bsp.h"
+#include "imagenes/cielo.h"
 #include "lib_draw.h"
-#include "imagenes/fondo4.h"
 #include "imagenes/nave0.h"
 #include "imagenes/nave1.h"
 #include "imagenes/nave_der0.h"
@@ -24,6 +24,18 @@ int main(void) {
 		} else {
 			VGA_DrawImageAlpha(&nave0, posx, posy, 0x1C);
 		}
+
+		if(!get_sw_state(SW_RIGHT))
+		posx++;
+
+		if(!get_sw_state(SW_LEFT))
+		posx--;
+
+		if(get_sw_state(SW_DOWN))
+		posy++;
+
+		if(get_sw_state(SW_UP))
+		posy--;
 
 		bsp_draw();
 
